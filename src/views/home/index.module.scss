@@ -1,0 +1,11 @@
+.list-wrap {
+  height: 100%;
+  > div:first-child {
+    overflow-y: auto;
+    height: calc(100% - #{49px});
+    margin-bottom: 12px;
+  }
+  > div:last-child {
+    margin: 0;
+  }
+}
