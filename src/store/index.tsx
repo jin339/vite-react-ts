@@ -1,14 +1,25 @@
 import { legacy_createStore as createStore, combineReducers } from 'redux'
+const importAllReducers = async () => {
+  const context = import.meta.glob('./reducers/*.tsx')
+  const modules = {} as Record<string, any>
 
-import addReducer, { ActionType as AddActionType } from './reducers/addReducer'
+  for (const key in context) {
+    const moduleName = key.replace(/^\.\/reducers\/(.*)\.tsx$/, '$1')
+    const module = (await context[key]()) as { default: any }
+    modules[moduleName] = module.default
+  }
 
-export interface RootState {
-  addReducer: ReturnType<typeof addReducer>
+  return modules
 }
-export type ActionType = AddActionType
+
+const reducers = await importAllReducers()
 
 const rootReducer = combineReducers({
-  addReducer,
+  ...reducers,
 })
+
+export type RootState = ReturnType<typeof rootReducer>
+export type AppDispatch = typeof store.dispatch
+
 const store = createStore(rootReducer)
 export default store
