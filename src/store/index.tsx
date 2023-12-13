@@ -1,18 +1,6 @@
 import { legacy_createStore as createStore, combineReducers } from 'redux'
-const importAllReducers = async () => {
-  const context = import.meta.glob('./reducers/*.tsx')
-  const modules = {} as Record<string, any>
 
-  for (const key in context) {
-    const moduleName = key.replace(/^\.\/reducers\/(.*)\.tsx$/, '$1')
-    const module = (await context[key]()) as { default: any }
-    modules[moduleName] = module.default
-  }
-
-  return modules
-}
-
-const reducers = await importAllReducers()
+import reducers from './reducers/index'
 
 const rootReducer = combineReducers({
   ...reducers,

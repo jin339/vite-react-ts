@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { RootState, AppDispatch } from 'store/index'
+import { RootState, AppDispatch } from 'src/store/index'
 
 import {} from 'antd'
 import { UserOutlined, VideoCameraOutlined } from '@ant-design/icons'
