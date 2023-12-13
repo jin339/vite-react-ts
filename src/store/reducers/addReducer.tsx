@@ -6,7 +6,7 @@ const initialState: StateType = {
   count: 0,
 }
 
-type ActionType = { type: 'add' } | { type: 'minus' }
+export type ActionType = { type: 'add' } | { type: 'minus' }
 
 const rootReducer = (state: StateType = initialState, action: ActionType): StateType => {
   switch (action.type) {

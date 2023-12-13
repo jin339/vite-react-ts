@@ -2,10 +2,10 @@ import {} from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
-import store from './store/store.tsx'
+import store from './store/index'
 
 import './index.scss'
-import Router from './router.tsx'
+import Router from './router'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
