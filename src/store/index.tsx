@@ -1,10 +1,15 @@
 import { legacy_createStore as createStore, combineReducers } from 'redux'
 
+// import addReducer from './reducers/addReducer'
+// const rootReducer = combineReducers({
+//   addReducer,
+// })
+
+// 动态引入
 const importAllReducers = async () => {
   const context = import.meta.glob('./reducers/*.tsx')
   const modules = {} as Record<string, any>
 
-  // Use Promise.all to await all imports
   await Promise.all(
     Object.entries(context).map(async ([key, value]) => {
       const moduleName = key.replace(/^\.\/reducers\/(.*)\.tsx$/, '$1')
