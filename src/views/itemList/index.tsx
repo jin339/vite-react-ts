@@ -8,7 +8,7 @@ import PageLayout from 'components/pageLayout'
 
 const Index: FC = () => {
   const navigate = useNavigate()
-  const count = useSelector((state: RootState) => state.addReducer.count)
+  const count = useSelector((state: RootState) => (state as any).addReducer.count)
   const dispatch = useDispatch<AppDispatch>()
 
   const menuItems = [
