@@ -4,6 +4,9 @@ import { useNavigate } from 'react-router-dom'
 import {} from 'antd'
 import { UserOutlined, VideoCameraOutlined } from '@ant-design/icons'
 
+import { useSelector, useDispatch } from 'react-redux'
+import { RootState } from 'store/store'
+// 全局框架组件
 import PageLayout from 'components/pageLayout'
 
 // 页面样式
@@ -11,6 +14,8 @@ import PageLayout from 'components/pageLayout'
 
 const Index: FC = () => {
   const navigate = useNavigate()
+  const count = useSelector((state: RootState) => state.addReducer.count)
+  const dispatch = useDispatch()
 
   const menuItems = [
     {
@@ -27,7 +32,19 @@ const Index: FC = () => {
     },
   ]
 
-  return <PageLayout siderMenu={menuItems} contentSlot={<div>222</div>} />
+  return (
+    <PageLayout
+      siderMenu={menuItems}
+      contentSlot={
+        <div>
+          <div>111</div>
+          <div>{count}</div>
+          <button onClick={() => dispatch({ type: 'add' })}>+</button>
+          <button onClick={() => dispatch({ type: 'minus' })}>-</button>
+        </div>
+      }
+    />
+  )
 }
 
 export default Index

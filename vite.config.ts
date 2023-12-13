@@ -17,6 +17,8 @@ export default defineConfig({
     alias: {
       src: resolve('src'),
       assets: resolve('src/assets'),
+      utils: resolve('src/utils'),
+      store: resolve('src/store'),
       components: resolve('src/components'),
       views: resolve('src/views'),
     },
@@ -44,7 +46,7 @@ export default defineConfig({
         entryFileNames: 'assets/chunk/[name]-[hash].js',
         assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
         manualChunks: {
-          'chunk-vendor': ['react', 'react-dom', 'react-router-dom', 'antd'],
+          'chunk-vendor': ['react', 'react-dom', 'redux', 'react-redux', 'react-router-dom', 'antd'],
         },
       },
     },

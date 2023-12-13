@@ -3,92 +3,22 @@ import { useNavigate } from 'react-router-dom'
 
 import { List } from 'antd'
 import {} from '@ant-design/icons'
-
+// 全局框架组件
 import PageLayout from 'components/pageLayout'
+import { useTimeAgo } from '../../utils/useTimeAgo'
 
 // 页面样式
 import styles from './index.module.scss'
 
-const ContentList = () => {
+const ContentList: FC = () => {
   const navigate = useNavigate()
+
   const data = [
     {
       title: 'Ant Design Title 1',
-    },
-    {
-      title: 'Ant Design Title 2',
-    },
-    {
-      title: 'Ant Design Title 1',
-    },
-    {
-      title: 'Ant Design Title 2',
-    },
-    {
-      title: 'Ant Design Title 1',
-    },
-    {
-      title: 'Ant Design Title 2',
-    },
-    {
-      title: 'Ant Design Title 1',
-    },
-    {
-      title: 'Ant Design Title 2',
-    },
-    {
-      title: 'Ant Design Title 1',
-    },
-    {
-      title: 'Ant Design Title 2',
-    },
-    {
-      title: 'Ant Design Title 1',
-    },
-    {
-      title: 'Ant Design Title 2',
-    },
-    {
-      title: 'Ant Design Title 1',
-    },
-    {
-      title: 'Ant Design Title 2',
-    },
-    {
-      title: 'Ant Design Title 1',
-    },
-    {
-      title: 'Ant Design Title 2',
-    },
-    {
-      title: 'Ant Design Title 1',
-    },
-    {
-      title: 'Ant Design Title 2',
-    },
-    {
-      title: 'Ant Design Title 1',
-    },
-    {
-      title: 'Ant Design Title 2',
-    },
-    {
-      title: 'Ant Design Title 1',
-    },
-    {
-      title: 'Ant Design Title 2',
-    },
-    {
-      title: 'Ant Design Title 1',
-    },
-    {
-      title: 'Ant Design Title 2',
-    },
-    {
-      title: 'Ant Design Title 1',
-    },
-    {
-      title: 'Ant Design Title 2',
+      description:
+        'No. 18, Wantang Road, Xihu District, Hangzhou, Zhejiang, China No. 18, Wantang Road, Xihu District, Hangzhou, Zhejiang, China No. 18, Wantang Road, Xihu District, Hangzhou, Zhejiang, China No. 18, Wantang Road, Xihu District, Hangzhou, Zhejiang, China',
+      time: '2023/12/13 11:51:19',
     },
   ]
   return (
@@ -96,10 +26,18 @@ const ContentList = () => {
       className={styles['list-wrap']}
       itemLayout='horizontal'
       dataSource={data}
-      pagination={{ position: 'bottom', align: 'center' }}
+      pagination={{ position: 'bottom', align: 'center', hideOnSinglePage: true }}
       renderItem={(item) => (
-        <List.Item>
-          <List.Item.Meta title={item.title} description='this is description' onClick={() => navigate('/item-list')} />
+        <List.Item className={styles['item']} onClick={() => navigate('/item-list')}>
+          <List.Item.Meta
+            title={item.title}
+            description={
+              <>
+                <div className={styles['description']}>{item.description}</div>
+                <div className={styles['time']}>{useTimeAgo({ time: new Date(item.time) })}</div>
+              </>
+            }
+          />
         </List.Item>
       )}
     />

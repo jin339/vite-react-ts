@@ -24,6 +24,8 @@
       "/*": ["./*"],
       "src/*": ["src/*"],
       "assets/*": ["src/assets/*"],
+      "utils/*": ["src/utils/*"],
+      "store/*": ["src/store/*"],
       "components/*": ["src/components/*"],
       "views/*": ["src/views/*"]
     }

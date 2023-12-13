@@ -14,5 +14,6 @@ module.exports = {
     'keyword-spacing': 2, // 关键字前后的空格
     'react/react-in-jsx-scope': 'off',
     'react/prop-types': 'off',
+    'react-hooks/rules-of-hooks': 'off',
   },
 }

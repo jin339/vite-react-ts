@@ -27,7 +27,7 @@ const Index: FC<slotProps> = (props) => {
   return (
     <Layout className={styles['layout']}>
       <Layout.Header className={styles['header']}></Layout.Header>
-      <Layout>
+      <Layout className={styles['content-wrap']}>
         <Layout.Content>
           <Layout.Content className={styles['content']}>{contentSlot}</Layout.Content>
           <Layout.Footer className={styles['footer']}>©{new Date().getFullYear()} Created by You</Layout.Footer>
