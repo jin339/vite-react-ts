@@ -8,7 +8,7 @@ const initialState: StateType = {
 
 type ActionType = { type: 'add' } | { type: 'minus' }
 
-const rootReducer = (state: StateType = initialState, action: ActionType): StateType => {
+const addReducer = (state: StateType = initialState, action: ActionType): StateType => {
   switch (action.type) {
     case 'add':
       return { ...state, count: state.count + 1 }
@@ -19,4 +19,4 @@ const rootReducer = (state: StateType = initialState, action: ActionType): State
   }
 }
 
-export default rootReducer
+export default addReducer

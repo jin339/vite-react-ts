@@ -3,17 +3,14 @@ import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState, AppDispatch } from 'src/store/index'
 
-import {} from 'antd'
 import { UserOutlined, VideoCameraOutlined } from '@ant-design/icons'
-// 全局框架组件
 import PageLayout from 'components/pageLayout'
-
-// 页面样式
-// import styles from './index.module.scss'
 
 const Index: FC = () => {
   const navigate = useNavigate()
-  const count = useSelector((state: RootState) => state.addReducer.count)
+
+  const count = useSelector((state: RootState) => (state as any).addReducer.count)
+
   const dispatch = useDispatch<AppDispatch>()
 
   const menuItems = [
@@ -30,6 +27,7 @@ const Index: FC = () => {
       onClick: () => navigate('/item-list'),
     },
   ]
+
   return (
     <PageLayout
       siderMenu={menuItems}
