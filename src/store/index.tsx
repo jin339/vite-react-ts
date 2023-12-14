@@ -1,9 +1,9 @@
 import { legacy_createStore as createStore, combineReducers } from 'redux'
 
-import listReducer from './reducers/listReducer'
+import allReducer from './reducers'
 
 const rootReducer = combineReducers({
-  listReducer,
+  ...allReducer,
 })
 
 export type RootState = ReturnType<typeof rootReducer>
