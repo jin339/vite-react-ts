@@ -1,5 +1,5 @@
 import { FC, useState, ReactNode } from 'react'
-import {} from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 import { Layout, Menu } from 'antd'
 import {} from '@ant-design/icons'
@@ -11,7 +11,6 @@ interface MenuItem {
   key: string
   icon?: ReactNode
   label?: string
-  onClick?: () => void
   children?: MenuItem[]
 }
 
@@ -21,12 +20,19 @@ interface slotProps {
 }
 
 const Index: FC<slotProps> = (props) => {
+  const location = useLocation()
+  const navigate = useNavigate()
   const { contentSlot, siderMenu } = props
   const [collapsed, setCollapsed] = useState(false)
 
   return (
     <Layout className={styles['layout']}>
-      <Layout.Header className={styles['header']}></Layout.Header>
+      <Layout.Header className={styles['header']}>
+        <div className={styles['wrap']}>
+          <div className={styles['logo']} onClick={() => navigate('/')}></div>
+          <div className={styles['nav-wrap']}></div>
+        </div>
+      </Layout.Header>
       <Layout className={styles['content-wrap']}>
         <Layout.Content>
           <Layout.Content className={styles['content']}>{contentSlot}</Layout.Content>
@@ -34,7 +40,13 @@ const Index: FC<slotProps> = (props) => {
         </Layout.Content>
         {siderMenu && (
           <Layout.Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
-            <Menu className={styles['sider']} mode='inline' defaultSelectedKeys={['2']} items={siderMenu} />
+            <Menu
+              className={styles['sider']}
+              mode='inline'
+              defaultSelectedKeys={[location.state]}
+              items={siderMenu}
+              onSelect={(e) => navigate('/items/' + e.key, { state: e.key })}
+            />
           </Layout.Sider>
         )}
       </Layout>
